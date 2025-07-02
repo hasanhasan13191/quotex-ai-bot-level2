@@ -1,0 +1,22 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quotex AI Signal Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body style="text-align:center;font-family:sans-serif">
+  <h1>📈 Quotex AI Bot V2</h1>
+  <button onclick="getSignal()" style="padding:10px 20px;font-size:18px;">Get Signal</button>
+  <p id="result" style="font-size:20px;margin-top:20px;"></p>
+
+  <script>
+    async function getSignal() {
+      const res = await fetch('/api/signal');
+      const data = await res.json();
+      document.getElementById('result').innerText =
+        `${data.time} - ${data.signal} (${data.confidence}%)`;
+    }
+  </script>
+</body>
+</html>
